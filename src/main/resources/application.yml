@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: YOURCLIENID
+            clientSecret: YOURCLIENTSECRET
+            scope:
+              - email
+              - profile
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+  datasource:
+    url: jdbc:postgresql://localhost:5433/todolistApplication
+    schema: todolist
+    username: username
+    password: password
+    initialization-mode: always
+    continue-on-error: 'true'
+    initialize: 'true'
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: todolist
+    hibernate:
+      show-sql: 'true'
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
